@@ -18,11 +18,12 @@ public class Employees_Chapter04 {
 					"Sakm3546@"
 			);
 			
-			System.out.println("データベース接続成功");
+			System.out.println("データベース接続成功:" + con);
 			
 			statement = con.createStatement();
+			
 			String sql = """
-						 CREATE TABLE users (
+						 CREATE TABLE IF NOT EXISTS emplotees (
 						 	id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 						 	name VARCHAR(60) NOT NULL,
 						 	email VARCHAR(255) NOT NULL,
@@ -32,7 +33,8 @@ public class Employees_Chapter04 {
 						 """;
 					
 			int rowCnt = statement.executeUpdate(sql);
-			System.out.println("テーブルを作成:rowCnt=" + rowCnt );
+			
+			System.out.println("社員テーブルを作成しました:更新レコード数=" + rowCnt );
 		} catch(SQLException e) {
 			System.out.println("エラー発生:" + e.getMessage());
 		} finally {
